@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Data Karyawan</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+    <h2 class="mb-4">Edit Data Karyawan</h2>
+    <form action="/edit-karyawan/<%= karyawan.id_karyawan %>" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label>ID Karyawan</label>
+            <input type="text" name="id_karyawan" value="<%= karyawan.id_karyawan %>" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Nama Karyawan</label>
+            <input type="text" name="nama_karyawan" value="<%= karyawan.nama_karyawan %>" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Jabatan</label>
+            <input type="text" name="jabatan" value="<%= karyawan.jabatan %>" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Alamat Karyawan</label>
+            <input type="text" name="alamat_karyawan" value="<%= karyawan.alamat_karyawan %>" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>No Hp</label>
+            <input type="number" name="no_hp" value="<%= karyawan.no_hp %>" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="file" class="form-label">Foto :</label>
+            <input type="file" class="form-control" id="file" name="file" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="/karyawan" class="btn btn-secondary">Kembali</a>
+    </form>
+</body>
+</html>

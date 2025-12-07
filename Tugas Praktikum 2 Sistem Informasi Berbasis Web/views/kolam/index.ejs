@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CRUD Kolam</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+</head>
+<body class="container" mt-5>
+    <h2 class="mb-4">Data Kolam</h2>
+    <a href="/add-kolam" class="btn btn-primary mb-3">Tambah Data Kolam</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID Kolam</th>
+                <th>Nama Kolam</th>
+                <th>Nama Barang</th>
+                <th>Jenis Kolam</th>
+                <th>Kedalaman</th>
+                <th>Harga Tiket</th>
+                <th>File</th>
+                <th>Foto</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% kolam.forEach(kolam => { %>
+                <tr>
+                    <td><%= kolam.id_kolam %></td>
+                    <td><%= kolam.nama_kolam %></td>
+                    <td><%= kolam.nama_barang %></td>
+                    <td><%= kolam.jenis_kolam %></td>
+                    <td><%= kolam.kedalaman %> meter</td>
+                    <td><%= kolam.harga_tiket.toLocaleString() %></td>
+                    <td><%= kolam.filename %></td>
+                    <td><img src="<%= kolam.filename %>" alt="<%= kolam.filename %>" width="50" height="50" style="object-fit: cover;"></td>
+                    <td>
+                        <a href="/edit-kolam/<%= kolam.id_kolam %>" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="/delete-kolam/<%= kolam.id_kolam %>" class="btn btn-danger btn-sm"
+                            onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>
