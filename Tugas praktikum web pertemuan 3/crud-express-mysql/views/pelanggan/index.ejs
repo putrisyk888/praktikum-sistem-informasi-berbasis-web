@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CRUD Pelanggan</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+</head>
+<body class="hold-transition sidebar-mini">
+
+    <div class="wraper">
+
+        <!-- Navbar -->
+            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+                    </li>
+                </ul>
+            </nav>
+
+        <!-- Sidebar -->
+         <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <a href="/" class="brand-link">
+                <span class="brand-text font-weight-light">Menu Utama</span>
+            </a>
+            <div class="sidebar">
+
+                <!-- Sidebar Menu -->
+                 <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link active">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/kolam" class="nav-link">
+                                <i class="fas fa-swimmer"></i>
+                                <p>Kolam</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/karyawan" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Karyawan</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/pelanggan" class="nav-link">
+                                <i class="fa-regular fa-user"></i>
+                                <p>Pelanggan</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                 </nav>
+            </div>
+         </aside>
+
+        <!-- Content -->
+         <div class="content-wrapper p-4">
+            <div class="container-fluid">
+                <h2 class="mb-4">Data Pelanggan</h2>
+    <a href="/add-pelanggan" class="btn btn-primary mb-3">Tambah Data Pelanggan</a>
+    <form class="mb-3" method="get" action="/pelanggan">
+  <div class="input-group">
+    <input 
+      type="text" 
+      name="search" 
+      value="<%= search %>" 
+      class="form-control" 
+      placeholder="Cari nama pelanggan...">
+    <button class="btn btn-primary" type="submit">Cari</button>
+  </div>
+</form>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr><th>ID Pelanggan</th>
+                <th>Nama Pelanggan</th>
+                <th>Alamat Pelanggan</th>
+                <th>No Hp</th>
+                <th>File</th>
+                <th>Foto</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% pelanggan.forEach(pelanggan => { %>
+                <tr>
+                    <td><%= pelanggan.id_pelanggan %></td>
+                    <td><%= pelanggan.nama_pelanggan %></td>
+                    <td><%= pelanggan.alamat_pelanggan %></td>
+                    <td><%= pelanggan.no_hp %></td>
+                    <td><%= pelanggan.filename %></td>
+                    <td><img src="<%= pelanggan.filename %>" alt="<%= pelanggan.filename %>" width="50" height="50" style="object-fit: cover;"></td>
+                    <td>
+                        <a href="/edit-pelanggan/<%= pelanggan.id_pelanggan %>" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="/delete-pelanggan/<%= pelanggan.id_pelanggan %>" class="btn btn-danger btn-sm"
+                            onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+     <nav>
+        <ul class="pagination">
+            <% for (let i = 1; i <= totalPages; i++) { %>
+            <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+                <a class="page-link" href="/pelanggan?page=<%= i %>&search=<%= search %>">
+                <%= i %>
+                </a>
+            </li>
+            <% } %>
+        </ul>
+    </nav>
+            </div>
+         </div>
+
+         <!-- Footer -->
+          <footer class="main-footer text-center">
+            <strong>@ 2025 Contoh AdminLTE</strong>
+          </footer>
+    </div>
+    
+    <!-- Scripts -->
+     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+
+</body>
+</html>

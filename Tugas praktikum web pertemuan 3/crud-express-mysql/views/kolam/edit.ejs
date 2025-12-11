@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Data Kolam</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+    <h2 class="mb-4">Edit Data Kolam</h2>
+    <form action="/edit-kolam/<%= kolam.id_kolam %>" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label>ID Kolam</label>
+            <input type="text" name="id_kolam" value="<%= kolam.id_kolam %>" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Nama Kolam</label>
+            <input type="text" name="nama_kolam" value="<%= kolam.nama_kolam %>" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Nama Barang</label>
+            <input type="text" name="nama_barang" value="<%= kolam.nama_barang %>" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Jenis Kolam</label>
+            <input type="text" name="jenis_kolam" value="<%= kolam.jenis_kolam %>" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Kedalaman</label>
+            <input type="text" name="kedalaman" value="<%= kolam.kedalaman %>" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Harga Tiket</label>
+            <input type="number" name="harga_tiket" value="<%= kolam.harga_tiket %>" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="file" class="form-label">Foto :</label>
+            <% if (kolam.filePath) { %>
+                <img
+                    src="/<%= kolam.filepath %>"
+                    alt="Foto Kolam"
+                    width="120"
+                    height="120"
+                    class="rounded border"
+                    />
+            <% } else { %>
+            <span class="text-muted">Belum ada foto.</span>
+            <% } %>
+        </div>
+
+        <div class="mb-3">
+            <label for="file" class="form-label">Ganti Foto</label>
+            <input type="file" class="form-control" id="file" name="file" accept="image/*">
+            <small class="text-muted">Kosongkan jika tidak ingin mengganti foto.</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="/kolam" class="btn btn-secondary">Kembali</a>
+    </form>
+</body>
+</html>

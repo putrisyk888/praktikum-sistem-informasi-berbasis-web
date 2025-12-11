@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Data Pelanggan</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+    <h2 class="mb-4">Edit Data Pelanggan</h2>
+    <form action="/edit-pelanggan/<%= pelanggan.id_pelanggan %>" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label>ID Pelanggan</label>
+            <input type="text" name="id_pelanggan" value="<%= pelanggan.id_pelanggan %>" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Nama Pelanggan</label>
+            <input type="text" name="nama_pelanggan" value="<%= pelanggan.nama_pelanggan %>" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Alamat Pelanggan</label>
+            <input type="text" name="alamat_pelanggan" value="<%= pelanggan.alamat_pelanggan %>" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>No Hp</label>
+            <input type="number" name="no_hp" value="<%= pelanggan.no_hp %>" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="file" class="form-label">Foto :</label>
+            <% if (pelanggan.filePath) { %>
+                <img
+                    src="/<%= pelanggan.filepath %>"
+                    alt="Foto Pelanggan"
+                    width="120"
+                    height="120"
+                    class="rounded border"
+                    />
+            <% } else { %>
+            <span class="text-muted">Belum ada foto.</span>
+            <% } %>
+        </div>
+
+        <div class="mb-3">
+            <label for="file" class="form-label">Ganti Foto</label>
+            <input type="file" class="form-control" id="file" name="file" accept="image/*">
+            <small class="text-muted">Kosongkan jika tidak ingin mengganti foto.</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="/pelanggan" class="btn btn-secondary">Kembali</a>
+    </form>
+</body>
+</html>
